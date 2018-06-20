@@ -1,0 +1,11 @@
+package com.company;
+
+/**
+ * Created by 21328GRO on 15/06/2018.
+ */
+public class ProjConstants {
+    public static final int USER = -156;
+    public static final int ADMIN = -122;
+    public static final int UP = -65;
+    public static final int DOWN = -44;
+}
