@@ -1,0 +1,32 @@
+package com.company;
+
+/**
+ * Created by 21328GRO on 15/06/2018.
+ */
+
+public class Elevator {
+    private int FloorAt = 0;
+
+    public int goUp (int floorUp){
+        FloorAt = floorUp;
+        return floorUp;
+    }
+    public int goDown (int floorDown){
+        FloorAt = floorDown;
+        return floorDown;
+    }
+}
+
+/*
+class Elevator{                                                            //creates the Employees class
+    int currentFloor;
+    String  direction;                   //initializes the variables in the class
+
+    Elevator (int cf, String dir){     //the constructor creates an object with all of the info input
+        currentFloor = cf;
+        direction = dir;
+    }
+
+}
+//make 1 array to hold the floor of each user including yourself
+*/
