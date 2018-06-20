@@ -1,0 +1,146 @@
+package com.company;
+import static com.company.ProjConstants.*;
+import java.util.*;
+import java.io.*;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        Elevator myElevator = new Elevator();
+        boolean modechoice = false;
+        boolean inservice = true;
+        boolean service = true;
+        boolean ADMINwhile = false;
+        boolean up;
+        boolean r = false;
+        int ADMINchoice = 0;
+        int modeselected = 0;
+        int FloorsRecorded [] = new int[21];
+        int direction = 0;
+        int FloorAt = 0;
+        int FloorCalledTo = 0;
+        int NXT = 0;
+
+
+        //scanner for the user to input mode
+        Scanner UserIn = new Scanner(System.in);
+
+
+       while (inservice){
+           while (!modechoice) {
+               System.out.println("Please select either 1 or 2:");
+               System.out.println("\t1) ADMIN");
+               System.out.println("\t2) USER");
+               modeselected = UserIn.nextInt();
+
+               switch (modeselected){
+                   case 1: {
+                       modeselected = ADMIN;
+                       modechoice = true;
+                       break;
+                   }
+                   case 2: {
+                       modeselected = USER;
+                       modechoice = true;
+                       break;
+                   }
+                   default: {
+                       System.out.println("ERROR: PLEASE SELECT ONLY OPTION 1 OR OPTION 2");
+                   }
+               }
+
+           }
+
+           if (modeselected == ADMIN){
+               while (!ADMINwhile) {
+                   System.out.println("Please select either 1 or 2:");
+                   System.out.println("\t1) In Service");
+                   System.out.println("\t2) Out of Service");
+                   ADMINchoice = UserIn.nextInt();
+
+                   switch (ADMINchoice){
+                       case 1: {
+                           service = true;
+                           ADMINwhile = true;
+                           break;
+                       }
+                       case 2: {
+                           service = false;
+                           ADMINwhile = true;
+                           break;
+                       }
+                       default: {
+                           System.out.println("ERROR: PLEASE SELECT ONLY OPTION 1 OR OPTION 2");
+                       }
+                   }
+
+               }
+               modeselected = USER;
+           }
+
+           if (modeselected == USER){
+               while (service){
+                   while (!r) {
+                       System.out.println("Please select either 1 or 2:");
+                       System.out.println("\t1) Up");
+                       System.out.println("\t2) Down");
+                       direction = UserIn.nextInt();
+
+                       switch (direction){
+                           case 1: {
+                               direction = UP;
+                               r = true;
+                               break;
+                           }
+                           case 2: {
+                               direction = DOWN;
+                               r = true;
+                               break;
+                           }
+                           default: {
+                               System.out.println("ERROR: PLEASE SELECT ONLY OPTION 1 OR OPTION 2");
+                           }
+                       }
+
+                   }
+                   //make an array for the floor numbers, then order it, floor number you are at now, make it go up by one every time and once it equals a floor number it stops and opens
+
+                   System.out.println("\tPlease input the floor that the elevator must go to.");
+                   FloorCalledTo = UserIn.nextInt();
+                   FloorsRecorded [NXT] = FloorCalledTo;
+                   if ((0 <= FloorCalledTo) && (FloorCalledTo <= 21)){
+                       System.out.println("\tGoing to floor " + FloorCalledTo);
+                       System.out.println();
+                       System.out.println("Arriving at floor " + FloorCalledTo);
+                       System.out.println("Please indicate what floor you would like to go to");
+                       FloorsRecorded [NXT] = UserIn.nextInt();
+                       if (FloorsRecorded [NXT] != FloorCalledTo){
+                           while (FloorsRecorded [NXT] > FloorCalledTo){
+                             //myElevator.goDown
+
+                           }
+
+                       }else{
+                           System.out.println("\tSorry that floor does not exist. Please pick a floor between 0 and 20");
+                           FloorsRecorded [NXT] = UserIn.nextInt();
+                       }
+
+                       //Please input what floor you would like to go to. while loop - while the floor that they are indicating is not the floor that you are at,
+                       //determine whether or not it is greater or less than the floor that the elevator is at. If loop -- if greater than the floor the elevator is at - go up. If less than
+                       //the floor that the elevator is at -- go down.
+                       break;
+                   } else {
+                       System.out.println("\tSorry this building does not have that floor! Please pick a floor between 0 and 20.");
+                       break;
+                   }
+
+
+
+
+
+               }
+           }
+       }
+    }
+}
